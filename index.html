@@ -203,7 +203,7 @@
       list-style: none;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       .header__nav { display: flex; }
     }
 
@@ -362,7 +362,7 @@
       padding: 8px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       .burger { display: none; }
     }
 
@@ -503,7 +503,7 @@
 
     .hero__title {
       font-family: var(--font-mono);
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-size: clamp(2rem, 5vw, 3.8rem);
       color: var(--text-bright);
       line-height: 1.1;
       margin-bottom: 28px;
@@ -806,6 +806,10 @@
       .orbit-track--inner .orbit-item { --radius: 160; }
       .orbit-track--outer .orbit-item { --radius: 230; }
       .orbit-item { width: 45px; height: 45px; margin-left: -22.5px; margin-top: -22.5px; }
+    }
+
+    @media (max-width: 1023px) {
+      .orbit-system { display: none !important; }
     }
 
     /* ═══════════════════════════════════════════
@@ -1693,8 +1697,7 @@
 
     .marquee-content {
       display: flex;
-      flex: 1;
-      justify-content: space-around;
+      flex-shrink: 0;
       gap: 30px;
       padding: 0 15px;
     }
@@ -1769,8 +1772,15 @@
     }
 
     @media (max-width: 768px) {
+      .testimonials {
+        padding: 60px 0;
+      }
       .testimonial-card {
-        width: 300px;
+        width: 280px;
+        padding: 20px;
+      }
+      .marquee-container {
+        animation-duration: 20s; /* Faster scroll on mobile as path is shorter */
       }
     }
   </style>
