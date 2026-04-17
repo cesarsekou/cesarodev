@@ -335,17 +335,37 @@
             calendlyContainer.style.opacity = '1';
           }, 10);
           
-          if (!calendlyLoaded && window.Calendly) {
-            window.Calendly.initInlineWidget({
-              url: 'https://calendly.com/cesarsekou1',
-              parentElement: calendlyEmbed,
-              prefill: {
-                customAnswers: {
-                  a1: this.getAttribute('data-type')
-                }
+          if (!calendlyLoaded) {
+            const initCalendly = () => {
+              if (window.Calendly) {
+                window.Calendly.initInlineWidget({
+                  url: 'https://calendly.com/cesarsekou1',
+                  parentElement: calendlyEmbed,
+                  prefill: {
+                    customAnswers: {
+                      a1: this.getAttribute('data-type')
+                    }
+                  }
+                });
+                calendlyLoaded = true;
+              } else {
+                setTimeout(initCalendly, 100);
               }
-            });
-            calendlyLoaded = true;
+            };
+            initCalendly();
+          } else {
+             if (window.Calendly) {
+               calendlyEmbed.innerHTML = '';
+               window.Calendly.initInlineWidget({
+                 url: 'https://calendly.com/cesarsekou1',
+                 parentElement: calendlyEmbed,
+                 prefill: {
+                   customAnswers: {
+                     a1: this.getAttribute('data-type')
+                   }
+                 }
+               });
+            }
           }
           
           setTimeout(() => {
