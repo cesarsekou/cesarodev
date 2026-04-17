@@ -1494,34 +1494,92 @@
     }
 
     /* ═══════════════════════════════════════════
-       WHATSAPP FLOATING BUTTON
+       PRE-QUALIFICATION
     ═══════════════════════════════════════════ */
-    .whatsapp-float {
+    .contact__pre-qual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+      max-width: 400px;
+      margin: 0 auto;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    @media (min-width: 768px) {
+      .contact__pre-qual {
+        flex-direction: row;
+        max-width: 100%;
+        justify-content: center;
+      }
+    }
+    .pre-qual-btn {
+      width: 100%;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .pre-qual-btn {
+        width: auto;
+      }
+    }
+    .pre-qual-btn.active {
+      background: var(--neon);
+      color: #000;
+      border-color: var(--neon);
+    }
+
+    /* ═══════════════════════════════════════════
+       FLOATING ACTIONS (Call + WhatsApp)
+    ═══════════════════════════════════════════ */
+    .floating-actions {
       position: fixed;
       bottom: 28px;
       right: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 900;
+    }
+
+    .float-btn {
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: #25D366;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-      z-index: 900;
       transition: all var(--transition-fast);
-      animation: whatsappPulse 2s ease-in-out infinite;
     }
 
-    .whatsapp-float:hover {
+    .float-btn:hover {
       transform: scale(1.1);
-      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
     }
 
-    .whatsapp-float svg {
+    .float-btn svg {
       width: 30px;
       height: 30px;
       fill: #fff;
+    }
+
+    .float-wa {
+      background: #25D366;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      animation: whatsappPulse 2s ease-in-out infinite;
+    }
+    .float-wa:hover {
+      box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+    }
+
+    .float-call {
+      background: var(--neon);
+      box-shadow: 0 6px 20px var(--neon-glow);
+    }
+    .float-call svg {
+      fill: #000;
+      width: 24px;
+      height: 24px;
+    }
+    .float-call:hover {
+      box-shadow: 0 8px 30px var(--neon-glow);
     }
 
     @keyframes whatsappPulse {

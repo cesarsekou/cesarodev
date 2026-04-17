@@ -312,3 +312,45 @@
           });
       });
     }
+
+    /* ═══════════════════════════════════════════
+       PRE-QUALIFICATION & CALENDLY EMBED
+    ═══════════════════════════════════════════ */
+    document.addEventListener("DOMContentLoaded", () => {
+      const preQualBtns = document.querySelectorAll('.pre-qual-btn');
+      const calendlyContainer = document.getElementById('calendly-container');
+      const calendlyEmbed = document.getElementById('calendly-inline-widget');
+      let calendlyLoaded = false;
+      
+      preQualBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          preQualBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          calendlyContainer.style.display = 'block';
+          
+          setTimeout(() => {
+            calendlyContainer.style.opacity = '1';
+          }, 10);
+          
+          if (!calendlyLoaded && window.Calendly) {
+            window.Calendly.initInlineWidget({
+              url: 'https://calendly.com/cesarsekou1',
+              parentElement: calendlyEmbed,
+              prefill: {
+                customAnswers: {
+                  a1: this.getAttribute('data-type')
+                }
+              }
+            });
+            calendlyLoaded = true;
+          }
+          
+          setTimeout(() => {
+             calendlyContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 300);
+        });
+      });
+    });
